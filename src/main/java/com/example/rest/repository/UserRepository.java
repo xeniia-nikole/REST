@@ -5,8 +5,6 @@ import com.example.rest.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,7 +25,7 @@ public class UserRepository {
         return null;
     }
 
-    public User setNewUser(User user) {
+    public User setUser(User user) {
         user.setAuthorities(Authorities.READ).setAuthorities(Authorities.WRITE);
         int id = userId.getAndIncrement();
         users.put(String.valueOf(id), user);

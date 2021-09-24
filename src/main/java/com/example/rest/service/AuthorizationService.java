@@ -32,6 +32,10 @@ public class AuthorizationService {
         return userAuthorities;
     }
 
+    public User setUser(User user) {
+        return userRepository.setUser(user);
+    }
+
     private boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
