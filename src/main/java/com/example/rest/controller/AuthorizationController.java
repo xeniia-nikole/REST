@@ -1,13 +1,15 @@
 package com.example.rest.controller;
 
 import com.example.rest.authorities.Authorities;
+import com.example.rest.model.User;
 import com.example.rest.service.AuthorizationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 public class AuthorizationController {
     AuthorizationService service;
@@ -16,9 +18,9 @@ public class AuthorizationController {
         this.service = service;
     }
 
-    @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@RequestParam("user") String login, @RequestParam("password") String password) {
-        return service.getAuthorities(login, password);
+    @PostMapping("/authorize")
+    public List<Authorities> getAuthorities(@RequestBody @Valid User user) {
+        return service.getAuthorities(user);
     }
 
 }

@@ -1,20 +1,42 @@
 package com.example.rest.model;
 
-public class User {
-    private final String login;
-    private final String password;
+import com.example.rest.authorities.Authorities;
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+
+public class User {
+    @NotBlank
+    @Size(min = 3)
+    private String login;
+    @Size(min = 4)
+    private String password;
+    private List<Authorities> authorities  = new ArrayList<>();
 
     public String getLogin() {
         return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Authorities> getAuthorities() {
+        return authorities;
+    }
+
+    public User setAuthorities(Authorities authority) {
+        authorities.add(authority);
+        return this;
+    }
 }
